@@ -5,16 +5,12 @@ import { usePathname } from "next/navigation";
 function Airplane() {
   const [toggle, setToggle] = useState(false);
   const [city, setCity] = useState("");
-  const [audio, setAudio] = useState(() => {
-    let current = new Audio("https://s1-fmt2.liveatc.net/kjfk9_s");
-    return current;
-  });
-
+  const [audio, setAudio] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [pathname, setPathname] = useState(window.location.pathname);
-  console.log(pathname);
+  const [pathname, setPathname] = useState();
+
   let sound = audio;
-  console.log(sound);
+
   let cities = [
     "Los Angeles",
     "New York",
@@ -48,10 +44,15 @@ function Airplane() {
   const toggleBtn = () => {
     setToggle(!toggle);
   };
+
   useEffect(() => {
     togglePlayPause();
+    if (!audio) {
+      setAudio(new Audio("https://s1-fmt2.liveatc.net/kjfk9_s"));
+      setPathname(window.location.pathname);
+    }
 
-    return () => sound.pause();
+    return () => (sound ? sound.pause() : "");
   }, [city, toggle, pathname]);
 
   return (
@@ -75,15 +76,15 @@ function Airplane() {
             {toggle ? "on" : "off"}
           </p>
         </div>
-        <label htmlFor="airport-select" className="text-sm">
-          listen to live ATC <br></br>
+        <label htmlFor="airport-select" className="text-sm text-center">
+          Live ATC <br></br>
           choose an airport
         </label>
         <select
           onChange={(e) => handleChange(e.target.value)}
-          className={`${
+          className={`form-select w-1/5 focus:ring-0 focus:border-darkgrey focus:within:hidden ${
             !toggle ? "cursor-not-allowed" : ""
-          } relative text-sm border-2 border-darkgrey py-2 px-4 bg-black mt-4 mb-6 outline-none`}
+          } relative text-sm border-2 border-darkgrey py-2 px-4 bg-black mt-4 mb-4 outline-none`}
           disabled={toggle ? "" : "disabled"}
         >
           <option>-</option>
@@ -95,7 +96,7 @@ function Airplane() {
         </select>
 
         <div
-          className={`md:left-[48%] 2xl:left-[49.5%] text-center w-full left-[47%] absolute bottom-0`}
+          className={`text-center w-full absolute bottom-0 flex justify-center`}
         >
           <div className="relative">
             <div
