@@ -12,38 +12,46 @@ function Playlist() {
   const [user, loading] = useAuthState(auth);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSound, setCurrentSound] = useState(() => {
-    const audio = new Audio(audioList[currentIndex].url);
-    audio.autoplay = false; // Disable autoplay
-    return audio;
-  });
+  const [currentSound, setCurrentSound] = useState(null);
+
   let sound = currentSound;
+
   const mainPlay = async (index) => {
+    console.log(isPlaying);
     if (currentIndex === index) {
       togglePlayPause();
-      toggleIsPlaying();
+      setIsPlaying(!isPlaying);
+    } else if (currentIndex !== index && isPlaying) {
+      setIsPlaying(!isPlaying);
+      setCurrentIndex(index);
+      // setIsPlaying(!isPlaying);
     } else {
       setCurrentIndex(index);
-      toggleIsPlaying();
     }
   };
-
-  const togglePlayPause = () => {
-    return sound.paused ? sound.play() : sound.pause();
-  };
-  const toggleIsPlaying = () => {
-    isPlaying ? setIsPlaying(false) : setIsPlaying(true);
-  };
   const changeSound = () => {
-    if (sound) {
+    if (sound !== null) {
       sound.pause();
 
       sound.src = audioList[currentIndex].url;
       sound.loop = true;
+      setIsPlaying(!isPlaying);
     } else {
-      sound.src = audioList[currentIndex].url;
-      sound.loop = true;
+      setCurrentSound(new Audio(audioList[currentIndex].url));
     }
+  };
+
+  const togglePlayPause = () => {
+    if (sound !== null) {
+      if (sound.paused) {
+        sound.play();
+      } else {
+        sound.pause();
+      }
+    }
+  };
+  const toggleIsPlaying = () => {
+    isPlaying ? setIsPlaying(false) : setIsPlaying(true);
   };
 
   const toggleBigBtn = () => {
@@ -58,6 +66,11 @@ function Playlist() {
   const changeVolume = (e) => {
     return (sound.volume = e.target.value / 100);
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentSound(new Audio(audioList[currentIndex].url));
+    }
+  }, []);
 
   useEffect(() => {
     changeSound();

@@ -5,11 +5,16 @@ import { usePathname } from "next/navigation";
 function Airplane() {
   const [toggle, setToggle] = useState(false);
   const [city, setCity] = useState("");
-  const [audio, setAudio] = useState(new Audio(""));
+  const [audio, setAudio] = useState(() => {
+    let current = new Audio("https://s1-fmt2.liveatc.net/kjfk9_s");
+    return current;
+  });
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [pathname, setPathname] = useState(window.location.pathname);
-
+  console.log(pathname);
   let sound = audio;
+  console.log(sound);
   let cities = [
     "Los Angeles",
     "New York",
@@ -23,50 +28,31 @@ function Airplane() {
   ];
   let sortedCities = cities.sort();
 
-  const handleCityChange = (cityChange) => {
-    if (city !== cityChange) {
-      setCity(cityChange);
-    }
+  const handleChange = (value) => {
+    setCity(value);
+    let soundUrl = atcList.find((item) => item.city === value).url;
+    sound.src = soundUrl;
   };
-  const handleAudioChange = () => {
-    if (city.length > 0) {
-      sound.pause();
-      let current = atcList.filter((item) => item.city === city);
-      sound.src = current[0].url;
-      togglePlayPause();
-    } else if (city.length === 0) {
+  const togglePlayPause = () => {
+    if (city.length === 0) {
       return;
-    }
-  };
-  const togglePlayPause = async () => {
-    if (sound.paused) {
-      await sound.play();
+    } else if (city.length !== 0 && toggle) {
+      sound.play();
       setIsPlaying(true);
-    } else {
-      sound.pause();
-      setIsPlaying(false);
-    }
-  };
-  const toggleBtn = () => {
-    if (!toggle) {
-      setToggle(true);
-      if (sound.src.length !== 0) {
-        sound.play();
-        setIsPlaying(true);
-      }
-    } else {
-      setToggle(false);
+    } else if (city.length !== 0 && !toggle) {
       sound.pause();
       setIsPlaying(false);
     }
   };
 
+  const toggleBtn = () => {
+    setToggle(!toggle);
+  };
   useEffect(() => {
-    handleAudioChange();
-    return () => {
-      sound.pause();
-    };
-  }, [city, pathname]);
+    togglePlayPause();
+
+    return () => sound.pause();
+  }, [city, toggle, pathname]);
 
   return (
     <div className="w-4/5 mx-auto">
@@ -94,7 +80,7 @@ function Airplane() {
           choose an airport
         </label>
         <select
-          onChange={(e) => handleCityChange(e.target.value)}
+          onChange={(e) => handleChange(e.target.value)}
           className={`${
             !toggle ? "cursor-not-allowed" : ""
           } relative text-sm border-2 border-darkgrey py-2 px-4 bg-black mt-4 mb-6 outline-none`}
@@ -107,8 +93,9 @@ function Airplane() {
             </option>
           ))}
         </select>
+
         <div
-          className={`md:left-[49%] 2xl:left-[49.5%] text-center w-full left-[47%] absolute bottom-0`}
+          className={`md:left-[48%] 2xl:left-[49.5%] text-center w-full left-[47%] absolute bottom-0`}
         >
           <div className="relative">
             <div

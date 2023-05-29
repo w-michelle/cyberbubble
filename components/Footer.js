@@ -12,8 +12,8 @@ function Footer() {
   const [toggleAbout, setToggleAbout] = useState(false);
 
   return (
-    <div className="text-white w-full absolute bottom-0">
-      <div className="footer gap-4 text-sm p-6">
+    <div className="text-white w-full absolute bottom-0 flex justify-center mb-4">
+      <div className="footer gap-4 text-sm py-6 px-4 w-10/12">
         <ul className="flex gap-4">
           <li>
             {toggleAbout ? <About toggle={setToggleAbout} /> : ""}

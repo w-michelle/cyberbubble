@@ -41,8 +41,6 @@ export default function Home() {
   useEffect(() => {
     if (user) {
       route.push("/");
-    } else {
-      console.log("login");
     }
   }, [user]);
 
@@ -57,13 +55,13 @@ export default function Home() {
             <div className="w-3/4">
               <button
                 onClick={GoogleLogin}
-                className="text-white bg-transparent border-[1px] border-greyBlue py-2 px-4 w-full font-medium rounded-lg flex items-start gap-3 mb-8"
+                className="text-white bg-transparent border-[2px] border-grey py-2 px-4 w-full font-medium rounded-lg flex items-start gap-3 mb-8"
               >
                 <FcGoogle className="text-2xl" /> Sign in with Google
               </button>
               <button
                 onClick={guestSignIn}
-                className="text-white bg-transparent border-[1px] border-greyBlue py-2 px-4 w-full font-medium rounded-lg flex items-start gap-3 mb-8"
+                className="text-white bg-transparent border-[2px] border-greyBlue py-2 px-4 w-full font-medium rounded-lg flex items-start gap-3 mb-8"
               >
                 <RxPerson className="text-2xl" /> Sign in Anonymously
               </button>
