@@ -13,7 +13,7 @@ function Playlist() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSound, setCurrentSound] = useState(() => {
-    const audio = new Audio();
+    const audio = new Audio(audioList[currentIndex].url);
     audio.autoplay = false; // Disable autoplay
     return audio;
   });
@@ -89,7 +89,9 @@ function Playlist() {
         >
           {audioList?.map((item, index) => (
             <li className="mt-6" key={item.id}>
-              <p className="text-xs mb-2">{item.country}</p>
+              <p className="text-xs mb-2">
+                {item.country.split(/(?=[A-Z])/).join(" ")}
+              </p>
               <div className="audio flex items-center gap-2 ">
                 {currentIndex === index && isPlaying ? (
                   <BsPauseFill

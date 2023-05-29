@@ -1,3 +1,4 @@
+"use client";
 import {
   Editor as DraftEditor,
   EditorState,
@@ -109,7 +110,7 @@ function Editor() {
         <DraftEditor
           editorState={editorState}
           onChange={handleChange}
-          placeholder="write something..."
+          placeholder="write something"
         />
       </div>
     </div>

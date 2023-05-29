@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 function Airplane() {
   const [toggle, setToggle] = useState(false);
   const [city, setCity] = useState("");
-  const [audio, setAudio] = useState(new Audio());
+  const [audio, setAudio] = useState(new Audio(""));
   const [isPlaying, setIsPlaying] = useState(false);
   const [pathname, setPathname] = useState(window.location.pathname);
 
