@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth, db } from "../../utils/firebase";
@@ -19,12 +19,17 @@ import {
 function Log() {
   const router = useRouter();
 
+  const messageEndRef = useRef(null);
   const [messageText, setMessageText] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const [user, loading] = useAuthState(auth);
 
   const handleInput = (e) => {
     setMessageText(e.target.value);
+  };
+
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const saveMessage = async (e) => {
@@ -74,6 +79,9 @@ function Log() {
     });
     setAllMessages(updatemsg);
   };
+  useEffect(() => {
+    scrollToBottom();
+  }, [allMessages]);
 
   useEffect(() => {
     loadMessages();
@@ -93,7 +101,7 @@ function Log() {
 
                   <p
                     onClick={() => showPopup(msg.id)}
-                    className="p-3 bg-darkgrey text-white rounded-lg mt-2 mb-1"
+                    className="p-3 bg-darkgrey text-gray-200 rounded-lg mt-2 mb-1"
                   >
                     {msg.message}
                   </p>
@@ -114,6 +122,7 @@ function Log() {
               )}
             </li>
           ))}
+          <div ref={messageEndRef} />
         </ul>
       </div>
       <div className="lg:w-2/5 md:w-1/2 sm:w-3/5 w-11/12">
@@ -121,9 +130,9 @@ function Log() {
           onChange={handleInput}
           value={messageText}
           onKeyDown={saveMessage}
-          className="lg:h-28 px-3 py-2 h-20 mt-2 w-full text-white rounded-md text-xs outline-none bg-black shadow-custom overflow-auto resize-none"
+          className="lg:h-28 placeholder-lightgrey px-3 py-2 h-20 mt-2 w-full text-gray-200 rounded-md text-xs outline-none bg-black shadow-custom overflow-auto resize-none"
           type="text"
-          placeholder="today's log..."
+          placeholder="Brain dump . . ."
           cols="22"
         />
       </div>

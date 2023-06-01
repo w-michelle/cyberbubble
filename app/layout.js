@@ -2,6 +2,8 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import { Quicksand } from "next/font/google";
 import Playlist from "@/components/Playlist";
+import { Suspense } from "react";
+import Loading from "./loading";
 const quicksand = Quicksand({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -18,7 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${quicksand.variable} font-sans bg-black`}>
         <Nav />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+
         <Playlist />
       </body>
     </html>

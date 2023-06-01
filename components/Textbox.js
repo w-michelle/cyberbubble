@@ -46,6 +46,11 @@ function Editor() {
   const [docId, setDocId] = useState("");
   const initState = EditorState.createWithContent(initData);
   const [editorState, setEditorState] = useState(initState);
+  const editorEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    editorEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const save = async (data) => {
     await setDoc(doc(db, "editor", docId), { userId: user.uid, content: data });
@@ -96,6 +101,9 @@ function Editor() {
     });
     return unsubscribe;
   };
+  useEffect(() => {
+    scrollToBottom();
+  }, [editorState]);
 
   useEffect(() => {
     if (user) {
@@ -106,12 +114,13 @@ function Editor() {
 
   return (
     <div className="lg:mb-0 mb-4 shadow-custom rounded-xl p-3 ">
-      <div className="lg:h-[430px] md:h-[350px] scrollbar bg-black h-[300px] overflow-auto text-xs text-white ">
+      <div className="lg:h-[430px] md:h-[350px] scrollbar bg-black h-[300px] overflow-auto text-xs text-gray-200 p-4">
         <DraftEditor
           editorState={editorState}
           onChange={handleChange}
-          placeholder="write something"
+          placeholder="just a lonely text editor waiting for you to give me some meaning . . . "
         />
+        <div ref={editorEndRef} />
       </div>
     </div>
   );

@@ -132,3 +132,10 @@ body {
     height: 8px;
   }
 }
+.animate-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.public-DraftEditorPlaceholder-inner {
+  color: hsl(0, 0%, 64%, 0.22);
+}

@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../utils/firebase";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import {
   where,
 } from "firebase/firestore";
 import Editor from "@/components/Textbox";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 // const Editor = dynamic(import("../../components/Textbox"), { ssr: false });
 
 function Productive() {
@@ -25,6 +25,15 @@ function Productive() {
   const [user, loading] = useAuthState(auth);
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const toDoScrollEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    toDoScrollEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [todoList]);
 
   useEffect(() => {
     getData();
@@ -35,7 +44,7 @@ function Productive() {
     if (e.keyCode === 13) {
       const collectionRef = collection(db, "todos");
       await addDoc(collectionRef, {
-        user: uuid(),
+        user: uuidv4(),
         userId: user.uid,
         value: inputValue,
         createdAt: serverTimestamp(),
@@ -82,15 +91,15 @@ function Productive() {
     <div className="lg:flex-row lg:p-4 lg:w-11/12 lg:mx-auto lg:justify-evenly lg:gap-2 md:gap-2 flex flex-col items-center">
       <div className="lg:w-1/3 md:w-1/2 todo w-3/4 mt-6 pb-10">
         <input
-          className="px-4 py-2 mb-2 w-full outline-none rounded-md text-xs text-white bg-transparent border-[1px] border-greyBlue"
+          className="px-4 py-2 mb-2 w-full outline-none rounded-md text-xs placeholder-lightgrey text-gray-200 bg-transparent border-[1px] border-greyBlue"
           type="text"
-          placeholder=". . ."
+          placeholder="I'm not saying you need me, but your productivity says otherwise."
           enterKeyHint="done"
           value={inputValue}
           onChange={handleAddToDo}
           onKeyDown={handleAddToDo}
         />
-        <div className="p-2 lg:h-[400px] md:h-[300px] text-white overflow-auto h-[200px] rounded-2">
+        <div className="p-2 lg:h-[400px] md:h-[300px] text-gray-200 overflow-auto scrollbar h-[200px] rounded-2">
           <ul className="">
             {todoList.map((todo, index) => (
               <li key={index} className="flex mt-2 items-center">
@@ -104,7 +113,7 @@ function Productive() {
                   className={`ml-2 text-sm ${
                     todo.completed
                       ? "line-through text-lightgrey"
-                      : "text-white"
+                      : "text-gray-200"
                   }`}
                 >
                   {todo.value}
@@ -117,6 +126,7 @@ function Productive() {
                 </span>
               </li>
             ))}
+            <div ref={toDoScrollEndRef} />
           </ul>
         </div>
       </div>
