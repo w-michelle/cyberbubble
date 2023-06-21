@@ -45,6 +45,7 @@ function Playlist() {
     if (sound !== null) {
       if (sound.paused) {
         sound.play();
+        sound.loop = true;
       } else {
         sound.pause();
       }
@@ -127,7 +128,6 @@ function Playlist() {
                   defaultValue={50}
                   onChange={changeVolume}
                 />
-                <audio src={`/${item.country}.mp3`}></audio>
               </div>
             </li>
           ))}

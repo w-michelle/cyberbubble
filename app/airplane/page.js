@@ -44,6 +44,9 @@ function Airplane() {
   const toggleBtn = () => {
     setToggle(!toggle);
   };
+  const changeVolume = (e) => {
+    return (sound.volume = e.target.value / 100);
+  };
 
   useEffect(() => {
     togglePlayPause();
@@ -83,7 +86,7 @@ function Airplane() {
 
         <select
           onChange={(e) => handleChange(e.target.value)}
-          className={`form-select w-1/5 focus:ring-0 focus:border-darkgrey focus:within:hidden ${
+          className={`form-select md:w-1/5 w-1/2 focus:ring-0 focus:border-darkgrey focus:within:hidden ${
             !toggle ? "cursor-not-allowed" : ""
           } relative text-sm border-2 border-darkgrey py-2 px-4 bg-black mt-4 mb-4 outline-none`}
           disabled={toggle ? "" : "disabled"}
@@ -96,10 +99,8 @@ function Airplane() {
           ))}
         </select>
 
-        <div
-          className={`text-center w-full absolute bottom-0 flex justify-center`}
-        >
-          <div className="relative">
+        <div className="text-center w-full absolute bottom-0 flex justify-center">
+          <div className="relative left-[-11px]">
             <div
               id="bar-1"
               className={`sbar ${!isPlaying ? "noanim" : ""}`}
@@ -126,6 +127,17 @@ function Airplane() {
             ></div>
           </div>
         </div>
+      </div>
+      <div className="w-full mt-10 text-center">
+        <input
+          className="md:w-1/5 w-1/2 appearance-none h-0.5 outline-none opacity-70 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:h-2.5 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-lg [&::-webkit-slider-thumb]:cursor-pointer"
+          type="range"
+          min="1"
+          max="100"
+          step="1"
+          defaultValue={50}
+          onChange={changeVolume}
+        />
       </div>
     </div>
   );
