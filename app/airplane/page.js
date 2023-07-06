@@ -69,6 +69,8 @@ function Airplane() {
               id="toggle"
               className="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white  appearance-none cursor-pointer"
               onClick={() => toggleBtn()}
+              aria-label="Toggle on/off button"
+              title="Toggle atc on/off"
             />
             <label
               htmlFor="toggle"
@@ -99,7 +101,11 @@ function Airplane() {
           ))}
         </select>
 
-        <div className="text-center w-full absolute bottom-0 flex justify-center">
+        <div
+          className="text-center w-full absolute bottom-0 flex justify-center"
+          aria-label="Music sound wave animation"
+          title="Sound wave"
+        >
           <div className="relative left-[-11px]">
             <div
               id="bar-1"

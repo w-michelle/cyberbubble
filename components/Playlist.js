@@ -89,9 +89,17 @@ function Playlist() {
           onClick={() => toggleBigBtn()}
         >
           {isPlaying ? (
-            <BsPauseFill className="my-0 mx-auto hover:text-darkblue" />
+            <BsPauseFill
+              className="my-0 mx-auto hover:text-darkblue"
+              aria-label="Pause"
+              title="Pause"
+            />
           ) : (
-            <BsPlayFill className="my-0 mx-auto hover:text-darkblue" />
+            <BsPlayFill
+              className="my-0 mx-auto hover:text-darkblue"
+              aria-label="Play"
+              title="Play"
+            />
           )}
         </div>
       </div>
@@ -111,11 +119,15 @@ function Playlist() {
                   <BsPauseFill
                     className="cursor-pointer"
                     onClick={() => mainPlay(index)}
+                    aria-label="Pause"
+                    title="Pause"
                   />
                 ) : (
                   <BsPlayFill
                     className="cursor-pointer"
                     onClick={() => mainPlay(index)}
+                    aria-label="Play"
+                    title="Play"
                   />
                 )}
 

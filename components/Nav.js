@@ -22,16 +22,32 @@ export default function Nav() {
           </div>
           <div className="md:gap-6 navbar flex gap-4 text-white">
             <Link href="/">
-              <AiOutlineHome className="hover:text-greyBlue" />
+              <AiOutlineHome
+                className="hover:text-greyBlue"
+                aria-label="Home"
+                title="Home"
+              />
             </Link>
             <Link href="/productive">
-              <TbPencilMinus className="hover:text-greyBlue" />
+              <TbPencilMinus
+                className="hover:text-greyBlue"
+                aria-label="Productive"
+                title="Productive Space"
+              />
             </Link>
             <Link href="/log">
-              <BsChatSquareDots className="hover:text-greyBlue" />
+              <BsChatSquareDots
+                className="hover:text-greyBlue"
+                aria-label="Log"
+                title="Log"
+              />
             </Link>
             <Link href="/airplane">
-              <BsAirplane className="hover:text-greyBlue" />
+              <BsAirplane
+                className="hover:text-greyBlue"
+                aria-label="Live Air Traffic Control"
+                title="Live Air Traffic Control"
+              />
             </Link>
           </div>
         </div>

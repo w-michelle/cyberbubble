@@ -4,26 +4,20 @@ import {
   EditorState,
   convertToRaw,
   convertFromRaw,
-  ContentState,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../utils/firebase";
 
 import {
   addDoc,
-  serverTimestamp,
   collection,
   doc,
-  deleteDoc,
   onSnapshot,
   query,
-  orderBy,
-  updateDoc,
   where,
   setDoc,
-  getDoc,
   getDocs,
 } from "firebase/firestore";
 
@@ -46,11 +40,6 @@ function Editor() {
   const [docId, setDocId] = useState("");
   const initState = EditorState.createWithContent(initData);
   const [editorState, setEditorState] = useState(initState);
-  const editorEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    editorEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const save = async (data) => {
     await setDoc(doc(db, "editor", docId), { userId: user.uid, content: data });
@@ -101,9 +90,6 @@ function Editor() {
     });
     return unsubscribe;
   };
-  useEffect(() => {
-    scrollToBottom();
-  }, [editorState]);
 
   useEffect(() => {
     if (user) {
@@ -120,7 +106,6 @@ function Editor() {
           onChange={handleChange}
           placeholder="just a lonely text editor waiting for you to give me some meaning . . . "
         />
-        <div ref={editorEndRef} />
       </div>
     </div>
   );

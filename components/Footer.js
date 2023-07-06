@@ -32,10 +32,9 @@ function Footer() {
             <BiLogOut
               className="cursor-pointer relative"
               onClick={() => auth.signOut()}
+              aria-label="Log out"
+              title="Log out"
             />
-            {/* <p class="absolute text-xs w-15 px-3 py-2 text-center text-gray-600 truncate -translate-x-1/2 -top-5 bg-white rounded-lg shadow-md shadow-gray-200">
-              Log Out
-            </p> */}
           </li>
         </ul>
       </div>
