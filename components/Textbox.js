@@ -4,6 +4,7 @@ import {
   EditorState,
   convertToRaw,
   convertFromRaw,
+  RichUtils,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
 import { useState, useEffect } from "react";
@@ -40,6 +41,20 @@ function Editor() {
   const [docId, setDocId] = useState("");
   const initState = EditorState.createWithContent(initData);
   const [editorState, setEditorState] = useState(initState);
+
+  const handleBold = (e) => {
+    e.preventDefault();
+    setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
+  };
+  const handleItalic = (e) => {
+    e.preventDefault();
+    setEditorState(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
+  };
+
+  const handleUnderline = (e) => {
+    e.preventDefault();
+    setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
+  };
 
   const save = async (data) => {
     await setDoc(doc(db, "editor", docId), { userId: user.uid, content: data });
@@ -99,15 +114,34 @@ function Editor() {
   }, [user]);
 
   return (
-    <div className="lg:mb-0 mb-4 shadow-custom rounded-xl p-3 ">
-      <div className="lg:h-[430px] md:h-[350px] scrollbar bg-black h-[300px] overflow-auto text-xs text-gray-200 p-4">
-        <DraftEditor
-          editorState={editorState}
-          onChange={handleChange}
-          placeholder="just a lonely text editor waiting for you to give me some meaning . . . "
-        />
+    <>
+      <div className="flex items-center space-between">
+        <div className="flex gap-4 mb-2 ml-auto pr-2">
+          <button className="text-gray-200" onMouseDown={handleBold}>
+            B
+          </button>
+          <button className="text-gray-200 italic" onMouseDown={handleItalic}>
+            I
+          </button>
+          <button
+            className="text-gray-200 underline"
+            onMouseDown={handleUnderline}
+          >
+            U
+          </button>
+        </div>
       </div>
-    </div>
+
+      <div className="lg:mb-0 mb-4 shadow-custom rounded-xl">
+        <div className="lg:h-[430px] md:h-[350px] scrollbar bg-black h-[300px] overflow-auto text-xs text-gray-200 p-4">
+          <DraftEditor
+            editorState={editorState}
+            onChange={handleChange}
+            placeholder="just a lonely text editor waiting for you to give me some meaning . . . "
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
