@@ -9,9 +9,10 @@ function About({ toggle }) {
           <h3 className="font-bold mb-4">Cyber Bubble</h3>
 
           <p>
-            is a web app designed to help you be productive while working in
-            your own bubble. It was inspired by the pandemic and the longing for
-            travel, as many people miss the familiar sounds of home. The
+            is a web app designed to create a space for your ideas and thoughts
+            while you stay focus and disconnected from everything else hence
+            &apos;bubble&apos;. It was inspired by the pandemic and the longing
+            for travel, as many people miss the familiar sounds of home. The
             app&apos;s audio is meant to provide comfort and a sense of
             familiarity to those who are studying, working, or just going about
             their daily lives.

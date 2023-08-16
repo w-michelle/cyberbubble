@@ -15,7 +15,7 @@ function Credit({ toggle }) {
             width={100}
             height={100}
           />
-          <p className="mt-8 font-[500]">Developed & Designed By MW</p>
+          <p className="mt-8 font-[500]">Designed & Built By MW</p>
 
           <p
             onClick={() => toggle(false)}

@@ -139,3 +139,7 @@ body {
 .public-DraftEditorPlaceholder-inner {
   color: hsl(0, 0%, 64%, 0.22);
 }
+
+.tips:hover + .tipstext {
+  opacity: 1;
+}

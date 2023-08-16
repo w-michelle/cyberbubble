@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { atcList } from "@/data/atc";
+
 import { usePathname } from "next/navigation";
 function Airplane() {
   const [toggle, setToggle] = useState(false);
@@ -60,6 +62,14 @@ function Airplane() {
 
   return (
     <div className="w-4/5 mx-auto">
+      <div className=" my-4 flex items-center">
+        <MdOutlineTipsAndUpdates className="tips text-white/10 hover:text-white hover:cursor-pointer text-[22px]" />
+        <p className="tipstext ml-2 text-sm opacity-0 text-white/50">
+          Turn on -&gt; choose an airport -&gt; wait a moment, there may be a
+          time delay.
+        </p>
+      </div>
+
       <div className="flex flex-col items-center text-white p-8 relative">
         <div className="mx-auto flex items-center mt-4 mb-10">
           <div className="relative block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
