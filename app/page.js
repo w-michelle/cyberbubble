@@ -14,7 +14,6 @@ import { RxPerson } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-// const Editor = dynamic(import("../components/Textbox"), { ssr: false });
 export default function Home() {
   const route = useRouter();
   const [user, loading] = useAuthState(auth);

@@ -4,7 +4,7 @@ function About({ toggle }) {
       className="fixed flex justify-center items-center top-0 left-0 w-full h-full bg-glass backdrop-blur-[10px] z-50"
       onClick={() => toggle(false)}
     >
-      <div className="md:w-[400px] md:h-[400px] text-white text-xs w-[300px] h-[300px] flex items-center justify-centers">
+      <div className="md:w-[400px] md:h-[400px] text-white text-xs w-[330px] h-[330px] flex items-center justify-centers">
         <div className="text-center w-full h-full rounded-[50%] bg-transparent border-2 border-greyBlue flex items-center flex-col justify-center px-12">
           <h3 className="font-bold mb-4">Cyber Bubble</h3>
 

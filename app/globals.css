@@ -36,9 +36,7 @@ body {
 .scrollbar::-webkit-scrollbar-track {
   height: 20px;
 }
-.scrollbar::-webkit-scrollbar-track-piece:start {
-  /* Select the top half (or left half) or scrollbar track individually */
-}
+
 .toggle-checkbox:checked {
   @apply: right-0 border-green-400;
   right: 0;
@@ -48,9 +46,7 @@ body {
   @apply: bg-green-400;
   background-color: #68d391;
 }
-/* .sound-bars {
-  width: 18px;
-} */
+
 .sbar#bar-1 {
   left: 0px;
   animation-name: dance;

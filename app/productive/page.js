@@ -18,7 +18,6 @@ import {
 } from "firebase/firestore";
 import Editor from "@/components/Textbox";
 import { v4 as uuidv4 } from "uuid";
-// const Editor = dynamic(import("../../components/Textbox"), { ssr: false });
 
 function Productive() {
   const route = useRouter();

@@ -11,9 +11,9 @@ const quicksand = Quicksand({
 });
 
 export const metadata = {
-  title: "Cyber Bubble",
+  title: "CyberBubble",
   description:
-    "Cyber Bubble is a space for your ideas and thoughts while you stay focus and disconnected from everything else.",
+    "CyberBubble is a space for your ideas and thoughts while you stay focus and disconnected from everything else.",
 };
 
 export default function RootLayout({ children }) {

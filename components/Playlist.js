@@ -24,7 +24,6 @@ function Playlist() {
     } else if (currentIndex !== index && isPlaying) {
       setIsPlaying(!isPlaying);
       setCurrentIndex(index);
-      // setIsPlaying(!isPlaying);
     } else {
       setCurrentIndex(index);
     }
@@ -50,9 +49,6 @@ function Playlist() {
         sound.pause();
       }
     }
-  };
-  const toggleIsPlaying = () => {
-    isPlaying ? setIsPlaying(false) : setIsPlaying(true);
   };
 
   const toggleBigBtn = () => {
@@ -80,7 +76,7 @@ function Playlist() {
   return (
     <div className="text-white">
       <div
-        className={`big-btn text-lg fixed bottom-0 w-1/8 left-[48%] flex justify-center ${
+        className={` hover:opacity-100 big-btn text-lg fixed bottom-0 opacity-50 left-[48%] w-1/8 flex justify-center ${
           pathname === "/" ? "hidden" : ""
         } z-50`}
       >
