@@ -10,7 +10,7 @@ function Playlist() {
   const pathname = usePathname();
 
   const [user, loading] = useAuthState(auth);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(2);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSound, setCurrentSound] = useState(null);
 
