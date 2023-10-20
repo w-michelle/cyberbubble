@@ -17,7 +17,6 @@ function Playlist() {
   let sound = currentSound;
 
   const mainPlay = async (index) => {
-    console.log(isPlaying);
     if (currentIndex === index) {
       togglePlayPause();
       setIsPlaying(!isPlaying);
