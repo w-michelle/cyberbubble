@@ -6,7 +6,7 @@ function Credit({ toggle }) {
       onClick={() => toggle(false)}
     >
       <div className="md:w-[400px] md:h-[400px] text-white text-xs w-[300px] h-[300px] flex items-center justify-centers">
-        <div className="text-center w-full h-full rounded-[50%] bg-transparent border-2 border-greyBlue flex items-center flex-col justify-center px-12">
+        <div className="text-center w-full h-full rounded-[50%] bg-transparent  flex items-center flex-col justify-center px-12">
           <p className="font-bold">Audio Credits</p>
           <Image
             src="/hsbclogo.svg"
@@ -15,6 +15,8 @@ function Credit({ toggle }) {
             width={100}
             height={100}
           />
+          <p className="font-bold">Live ATC: liveatc.net</p>
+
           <p className="mt-8 font-[500]">Designed & Built By MW</p>
 
           <p

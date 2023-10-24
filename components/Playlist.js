@@ -63,9 +63,7 @@ function Playlist() {
     return (sound.volume = e.target.value / 100);
   };
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentSound(new Audio(audioList[currentIndex].url));
-    }
+    setCurrentSound(new Audio(audioList[currentIndex].url));
   }, []);
 
   useEffect(() => {

@@ -100,8 +100,8 @@ function Productive() {
         />
         <div className="p-2 lg:h-[400px] md:h-[300px] text-gray-200 overflow-auto scrollbar h-[200px] rounded-2">
           <ul className="">
-            {todoList.map((todo, index) => (
-              <li key={index} className="flex mt-2 items-center">
+            {todoList.map((todo) => (
+              <li key={todo.id} className="flex mt-2 items-center">
                 <input
                   type="checkbox"
                   checked={todo.completed}

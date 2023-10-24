@@ -64,6 +64,7 @@ function Log() {
           timestamp: item.timestamp ? item.timestamp.toDate() : null,
         }))
         .sort((a, b) => a.timestamp - b.timestamp);
+
       setAllMessages(order);
     });
     return unsubscribe;
@@ -77,6 +78,7 @@ function Log() {
     let updatemsg = allMessages.map((item) => {
       return item.id === id ? { ...item, popup: !item.popup } : item;
     });
+
     setAllMessages(updatemsg);
   };
   useEffect(() => {
@@ -102,7 +104,7 @@ function Log() {
         <div className="lg:w-2/5 md:w-1/2 sm:w-3/5 w-11/12 h-[500px] mt-6 scrollbar bg-black shadow-custom rounded-md text-xs overflow-auto p-4">
           <ul>
             {allMessages.map((msg, index) => (
-              <li key={index} id="message-bubble" className="mb-3">
+              <li key={msg.id} id="message-bubble" className="mb-3">
                 {msg && msg.timestamp && (
                   <>
                     <p id="time" className="tracking-wider text-grey">
