@@ -57,6 +57,7 @@ function Productive() {
     return !findTodo.completed;
   };
   const updateTodo = async (id, userid) => {
+    console.log("hey");
     const docRef = doc(db, "todos", id);
     await updateDoc(docRef, {
       completed: toggleToDo(userid),
@@ -106,7 +107,7 @@ function Productive() {
                   type="checkbox"
                   checked={todo.completed}
                   onChange={() => updateTodo(todo.id, todo.user)}
-                  className="form-checkbox h-4 w-4 rounded-md text-transparent bg-transparent border-greyBlue focus-within:hidden focus:ring-0"
+                  className="form-checkbox h-4 w-4 rounded-md text-transparent bg-transparent border-greyBlue focus:ring-offset-0 focus:ring shadow-sm focus:ring-greyBlue focus:ring-opacity-5"
                 />
                 <p
                   className={`ml-2 text-sm ${
@@ -125,7 +126,7 @@ function Productive() {
                 </span>
               </li>
             ))}
-            <div ref={toDoScrollEndRef} />
+            {/* <div ref={toDoScrollEndRef} /> */}
           </ul>
         </div>
       </div>

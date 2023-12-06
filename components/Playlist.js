@@ -73,7 +73,7 @@ function Playlist() {
   return (
     <div className="text-white">
       <div
-        className={` hover:opacity-100 big-btn text-lg fixed bottom-0 opacity-50 left-[48%] w-1/8 flex justify-center ${
+        className={` hover:opacity-100 big-btn text-lg mt-4 sticky opacity-80 w-1/8 flex justify-center ${
           pathname === "/" ? "hidden" : ""
         } z-50`}
       >
