@@ -4,7 +4,7 @@ Cyber Bubble is a web app designed as a space for people to be in their ‘bubbl
 
 **[View Site](https://cyberbubble.vercel.app)**
 
-## Build With
+## Built With
 
 - Next.js
 - React
