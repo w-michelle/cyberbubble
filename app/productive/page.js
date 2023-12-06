@@ -57,7 +57,6 @@ function Productive() {
     return !findTodo.completed;
   };
   const updateTodo = async (id, userid) => {
-    console.log("hey");
     const docRef = doc(db, "todos", id);
     await updateDoc(docRef, {
       completed: toggleToDo(userid),
